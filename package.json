@@ -1,0 +1,36 @@
+{
+  "name": "project-lexart",
+  "version": "1.0.0",
+  "description": "project deployed at https://project-lexart.netlify.app/",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brenno-calado/lexartlabs-fullstack.git"
+  },
+  "author": "BCVMN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brenno-calado/lexartlabs-fullstack/issues"
+  },
+  "homepage": "https://github.com/brenno-calado/lexartlabs-fullstack#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-rescue": "^1.1.31",
+    "mongodb": "^4.1.4"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.25.2",
+    "nodemon": "^2.0.14"
+  }
+}
