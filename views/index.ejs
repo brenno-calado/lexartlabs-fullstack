@@ -8,6 +8,15 @@
   <title>Project Lexart</title>
 </head>
 <body>
-  
+  <select>
+    <% sites.forEach(site => { %>
+      <option value="<%= site %>"><%= site %></option>
+    <% }); %>
+  </select>
+  <select>
+    <% categories.forEach(category => { %>
+      <option value="<%= category.name %>"><%= category.name %></option>
+    <% }); %>
+  </select>
 </body>
 </html>
