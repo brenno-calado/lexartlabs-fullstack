@@ -7,8 +7,13 @@ const MLcategories = () => (axios.get(`${URL}${SITE}/categories`)
   .then((res) => res.data).catch((error) => error.data)
 );
 
-const sites = async () => (axios.get(`${URL}/sites`)
-  .then((response) => response.data).catch((error) => error.message)
+const MLsites = async () => (axios.get(`${URL}/sites`)
+  .then((response) => response.data).catch((error) => error.data)
 );
 
-module.exports = { MLcategories, sites };
+const MLproducts = async (category, search) => (
+  axios.get(`${URL}${SITE}/search?category=${category}&q=${search}`)
+    .then((response) => response.data).catch((error) => error.data)
+);
+
+module.exports = { MLcategories, MLsites, MLproducts };

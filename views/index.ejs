@@ -1,22 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A Node.js + EJS Project made for a LexartLabs technical challenge">
   <link rel="shortcut icon" href="" type="image/svg+xml" />
   <title>Project Lexart</title>
 </head>
 <body>
-  <select>
-    <% sites.forEach(site => { %>
-      <option value="<%= site %>"><%= site %></option>
-    <% }); %>
-  </select>
-  <select>
-    <% categories.forEach(category => { %>
-      <option value="<%= category.name %>"><%= category.name %></option>
-    <% }); %>
-  </select>
+  <form action="" method="get">
+    <select name="site" id="site" required>
+      <option value="">Web</option>
+      <% sites.forEach(site => { %>
+        <option value="<%= site.id %>"><%= site.value %></option>
+      <% }); %>
+    </select>
+    <select name="category" id="category">
+      <option value="">Categories</option>
+      <% categories.forEach(category => { %>
+        <option value="<%= category.id %>"><%= category.name %></option>
+      <% }); %>
+    </select>
+    <label for="search">
+      Pesquisar
+      <input id="search" type="text" name="search" />
+    </label>
+    <button id="submit" type="submit">Search</button>
+  </form>
+  <% if (products) { %>
+    <main>
+      <% products.forEach(product => { %>
+        <div id="<%= product.id %>">
+          <img src="<%= product.thumbnail %>" alt="<% product.title %>" />
+          <h2><%= product.title %></h2>
+          <span><%= product.prices.prices[0].amount %></span>
+          <h3><%= product.price %></h3>
+          <button><a href="<%= product.permalink %>">Ir a web</a></button>
+        </div>
+      <% }); %>
+    </main>
+  <% } %>
 </body>
+<script src="/js/form.js"></script>
 </html>

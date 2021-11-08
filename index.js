@@ -7,6 +7,7 @@ const path = require('path');
 
 const { getCategories } = require('./controllers/categories');
 const { getSites } = require('./controllers/sites');
+const { handleSearch } = require('./controllers/products');
 
 const dirname = path.resolve();
 
@@ -16,14 +17,13 @@ app.use(express.static(path.join(dirname, '/public')));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-app.get('/', async (_req, res) => {
+app.get('/', async (req, res) => {
   const categories = await getCategories();
   const sites = getSites();
-  res.status(200).render('index', { sites, categories });
+  const products = await handleSearch(req);
+  res.status(200).render('index', { sites, categories, products });
 });
 
 const { PORT } = process.env;
 
-http.listen(PORT || 3000, () => (
-  console.log(`ouvindo na porta ${PORT || 3000}`)
-));
+http.listen(PORT || 3000);

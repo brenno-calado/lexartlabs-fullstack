@@ -1,12 +1,11 @@
-const { MLcategories } = require('./mercadoLivre');
+const { MLcategories, MLproducts } = require('./mercadoLivre');
 
-const fetchCategories = async (site = 'ML') => {
-  const sites = {
-    ML: await MLcategories(),
-    BP: null,
-  };
-
-  return sites[site];
+const Web = {
+  ML: {
+    categories: async () => MLcategories(),
+    products: async (category, search) => MLproducts(category, search),
+  },
+  BP: null,
 };
 
-module.exports = { fetchCategories };
+module.exports = { Web };
