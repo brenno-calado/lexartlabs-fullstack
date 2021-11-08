@@ -5,7 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="A Node.js + EJS Project made for a LexartLabs technical challenge">
-  <link rel="shortcut icon" href="" type="image/svg+xml" />
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/svg+xml" />
+  <link rel="stylesheet" href="/css/index.css"/>
   <title>Project Lexart</title>
 </head>
 <body>
@@ -13,18 +14,36 @@
     <select name="site" id="site" required>
       <option value="">Web</option>
       <% sites.forEach(site => { %>
-        <option value="<%= site.id %>"><%= site.value %></option>
+        <option
+          value="<%= site.id %>"
+          <% if (siteQuery === site.id) { %>
+            <%= 'selected' %>
+          <% } %>
+        >
+          <%= site.value %>
+        </option>
       <% }); %>
     </select>
     <select name="category" id="category">
       <option value="">Categories</option>
       <% categories.forEach(category => { %>
-        <option value="<%= category.id %>"><%= category.name %></option>
+        <option
+          value="<%= category.id %>"
+          <% if (categoryQuery === category.id) { %>
+            <%= 'selected' %>
+          <% } %>
+        >
+          <%= category.name %>
+        </option>
       <% }); %>
     </select>
     <label for="search">
-      Pesquisar
-      <input id="search" type="text" name="search" />
+      <input
+        id="search"
+        type="text"
+        name="search"
+        value="<%= search %>"
+      />
     </label>
     <button id="submit" type="submit">Search</button>
   </form>
@@ -32,10 +51,19 @@
     <main>
       <% products.forEach(product => { %>
         <div id="<%= product.id %>">
-          <img src="<%= product.thumbnail %>" alt="<% product.title %>" />
-          <h2><%= product.title %></h2>
-          <span><%= product.prices.prices[0].amount %></span>
-          <h3><%= product.price %></h3>
+          <img
+            src="<%= product.thumbnail %>"
+            alt="<%= product.title %>"
+            width="40%"
+            height="40%"
+          />
+          <section>
+            <p><%= product.title %></p>
+            <% if (product.prices.prices[0].amount > product.price) { %>
+              <span>R$ <%= product.prices.prices[0].amount %></span>
+            <% } %>
+            <h3>R$ <%= product.price %></h3>
+          </section>
           <button><a href="<%= product.permalink %>">Ir a web</a></button>
         </div>
       <% }); %>

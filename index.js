@@ -21,7 +21,15 @@ app.get('/', async (req, res) => {
   const categories = await getCategories();
   const sites = getSites();
   const products = await handleSearch(req);
-  res.status(200).render('index', { sites, categories, products });
+  const { site, category, search } = req.query;
+  res.status(200).render('index', {
+    sites,
+    categories,
+    products,
+    siteQuery: site,
+    categoryQuery: category,
+    search,
+  });
 });
 
 const { PORT } = process.env;
