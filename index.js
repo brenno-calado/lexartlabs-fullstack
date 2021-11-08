@@ -17,11 +17,14 @@ app.use(express.static(path.join(dirname, '/public')));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+app.locals.getCategories = getCategories;
+
 app.get('/', async (req, res) => {
-  const categories = await getCategories();
+  const { site = 'ML', category, search } = req.query;
   const sites = getSites();
+  const categories = await getCategories(site);
   const products = await handleSearch(req);
-  const { site, category, search } = req.query;
+
   res.status(200).render('index', {
     sites,
     categories,

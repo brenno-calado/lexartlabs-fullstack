@@ -7,8 +7,7 @@ const getCategories = async (site = 'ML') => {
   }
 
   const categories = await findOne(site);
-
-  if (categories) {
+  if (categories.categories) {
     Categories[site] = categories.categories;
     return categories.categories;
   }
