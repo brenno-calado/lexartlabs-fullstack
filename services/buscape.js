@@ -4,7 +4,7 @@ const got = require('got');
 const URL = 'https://www.buscape.com.br';
 const ALLCATEGORIES = '/todas-categorias';
 const SEARCH = '/search?q=';
-const CATSELECTOR = '.CatBranch_CatTitle__b176b';
+const CATSELECTOR = 'li .CatBranch_SubCatTitle__2tk7u';
 const PRODSELECTOR = '.Cell_Content__1630r';
 
 const BPcategories = async () => {
@@ -40,7 +40,23 @@ const BPproducts = async (category, search) => {
     });
     return { results: products };
   }
-  return null;
+
+  const response = await got(`${URL}/${category}`);
+  const body = cheerio.load(response.body);
+  body(PRODSELECTOR).each((index, product) => {
+    console.log(product);
+    const price = body('.CellPrice_MainValue__3s0iP', product).text();
+    const img = body('.Cell_Image__2-Jrs', product);
+    products.push({
+      id: index,
+      title: product.attribs.title,
+      price: price.split('R$ ')[1],
+      permalink: `${URL}${product.attribs.href}`,
+      thumbnail: img,
+      original_price: '',
+    });
+  });
+  return { results: products };
 };
 
 module.exports = { BPcategories, BPproducts };
