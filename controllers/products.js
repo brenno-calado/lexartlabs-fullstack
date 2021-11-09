@@ -1,4 +1,4 @@
-const { Products, findOne } = require('../models/Products');
+const { Products, findOne, create } = require('../models/Products');
 const { Web } = require('../services');
 
 const handleSearch = async (req) => {
@@ -22,8 +22,8 @@ const handleSearch = async (req) => {
 
   if (!response) return { error: 'no product found' };
 
-  // Products[site][`${category}&${search}`] = response.results;
-  // create(site, category, search, response.results);
+  Products[site][`${category}&${search}`] = response.results;
+  create(site, category, search, response.results);
 
   return response.results;
 };
