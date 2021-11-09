@@ -44,7 +44,6 @@ const BPproducts = async (category, search) => {
   const response = await got(`${URL}/${category}`);
   const body = cheerio.load(response.body);
   body(PRODSELECTOR).each((index, product) => {
-    console.log(product);
     const price = body('.CellPrice_MainValue__3s0iP', product).text();
     const img = body('.Cell_Image__2-Jrs', product);
     products.push({

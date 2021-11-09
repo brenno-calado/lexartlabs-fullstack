@@ -8,14 +8,11 @@ const handleSearch = async (req) => {
   if (!site) return null;
   if (!category && !search) return null;
 
-  console.log(Products);
-
   if (Products[site][`${category}&${search}`]) {
     return Products[site][`${category}&${search}`];
   }
 
   const products = await findOne(site, category, search);
-  console.log(products);
   if (products) {
     Products[site][`${category}&${search}`] = products.products;
     return products.products;
