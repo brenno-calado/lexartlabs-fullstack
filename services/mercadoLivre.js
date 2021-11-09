@@ -13,7 +13,14 @@ const MLsites = async () => (axios.get(`${URL}/sites`)
 
 const MLproducts = async (category, search) => (
   axios.get(`${URL}${SITE}/search?category=${category}&q=${search}`)
-    .then((response) => response.data).catch((error) => error.data)
+    .then(({ data }) => ({
+      id: data.id,
+      thumbnail: data.thumbnail,
+      title: data.title,
+      original_price: data.original_price,
+      price: data.price,
+      permalink: data.permalink,
+    })).catch((error) => error.data)
 );
 
 module.exports = { MLcategories, MLsites, MLproducts };

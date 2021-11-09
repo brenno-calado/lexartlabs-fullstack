@@ -20,11 +20,13 @@
   "homepage": "https://github.com/brenno-calado/lexartlabs-fullstack#readme",
   "dependencies": {
     "axios": "^0.24.0",
+    "cheerio": "^1.0.0-rc.10",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-rescue": "^1.1.31",
+    "got": "^11.8.2",
     "mongodb": "^4.1.4"
   },
   "devDependencies": {

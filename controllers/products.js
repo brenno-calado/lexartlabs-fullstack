@@ -20,6 +20,8 @@ const handleSearch = async (req) => {
 
   const response = await Web[site].products(category, search);
 
+  if (!response) return { error: 'no product found' };
+
   Products[site][`${category}&${search}`] = response.results;
   create(site, category, search, response.results);
 
