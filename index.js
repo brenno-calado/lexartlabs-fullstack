@@ -17,8 +17,6 @@ app.use(express.static(path.join(dirname, '/public')));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-app.locals.getCategories = getCategories;
-
 app.get('/', async (req, res) => {
   const { site = 'ML', category, search } = req.query;
   const sites = getSites();

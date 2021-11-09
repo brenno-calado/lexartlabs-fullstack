@@ -42,13 +42,18 @@
         id="search"
         type="text"
         name="search"
-        value="<%= search %>"
       />
     </label>
     <button id="submit" type="submit">Search</button>
   </form>
+  <% if (search) { %>
+    <p>Showing results for <%= search %></p>
+  <% } %>
   <% if (products) { %>
     <main>
+      <% if (products.error) { %>
+        <p><%= products.error %></p>
+      <% } %>
       <% products.forEach(product => { %>
         <div id="<%= product.id %>">
           <img
@@ -59,8 +64,8 @@
           />
           <section>
             <p><%= product.title %></p>
-            <% if (product.prices.prices[0].amount > product.price) { %>
-              <span>R$ <%= product.prices.prices[0].amount %></span>
+            <% if (product.original_price > product.price) { %>
+              <span>R$ <%= product.original_price %></span>
             <% } %>
             <h3>R$ <%= product.price %></h3>
           </section>
